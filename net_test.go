@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestIsIPv4(t *testing.T) {
+func TestIPv4(t *testing.T) {
 	tt := []TestCases{
 		{"Valid IPv4", []string{"10.0.0.0", "127.0.0.1", "0.0.0.0", "255.255.255.255"}, true},
 		{"Invalid IPv4", []string{"256.256.256.256", "192.168.0.256", "1192.168.0.0"}, false},
@@ -29,7 +29,7 @@ func TestIsIPv4(t *testing.T) {
 	}
 }
 
-func TestIsIPv6(t *testing.T) {
+func TestIPv6(t *testing.T) {
 	tt := []TestCases{
 		{"Valid IPv6 - Full Address", []string{"2001:0db8:85a3:0000:0000:8a2e:0370:7334"}, true},
 		{"Valid IPv6 - Compressed Address", []string{"2001:db8:85a3::8a2e:370:7334"}, true},
@@ -118,6 +118,38 @@ func TestIPv6WithPort(t *testing.T) {
 				if IPv6WithPort().MatchString(input) && !tc.matches {
 					t.Errorf("%s should not match", input)
 				} else if !IPv6WithPort().MatchString(input) && tc.matches {
+					t.Errorf("%s should match", input)
+				}
+			}
+		})
+	}
+}
+
+func TestURL(t *testing.T) {
+	tt := []TestCases{
+		{"Valid URL", []string{
+			"http://www.example.com",
+			"https://www.example.com",
+			"ftp://example.com",
+			"https://sub.example.com/page",
+			"http://example.com/path/to/page.html?param=value",
+			"https://www.example.com#section",
+		}, true},
+		{"Invalid URL", []string{
+			"www.example.com",
+			"https://",
+			"http://example.com /page",
+			"https://example.com\ttab",
+			"https://example.com\nnewline",
+		}, false},
+	}
+
+	for _, tc := range tt {
+		t.Run(tc.name, func(t *testing.T) {
+			for _, input := range tc.inputs {
+				if URL().MatchString(input) && !tc.matches {
+					t.Errorf("%s should not match", input)
+				} else if !URL().MatchString(input) && tc.matches {
 					t.Errorf("%s should match", input)
 				}
 			}

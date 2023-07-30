@@ -10,6 +10,7 @@ const (
 	MACPattern          = `^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$`
 	IPv4WithPortPattern = `^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):\d{1,5}$`
 	IPv6WithPortPattern = `^\[([[:xdigit:]]{1,4}(?::[[:xdigit:]]{1,4}){7}|::|:(?::[[:xdigit:]]{1,4}){1,6}|[[:xdigit:]]{1,4}:(?::[[:xdigit:]]{1,4}){1,5}|(?:[[:xdigit:]]{1,4}:){2}(?::[[:xdigit:]]{1,4}){1,4}|(?:[[:xdigit:]]{1,4}:){3}(?::[[:xdigit:]]{1,4}){1,3}|(?:[[:xdigit:]]{1,4}:){4}(?::[[:xdigit:]]{1,4}){1,2}|(?:[[:xdigit:]]{1,4}:){5}:[[:xdigit:]]{1,4}|(?:[[:xdigit:]]{1,4}:){1,6}:)\]:\d{1,5}$`
+	URLPattern          = `^(http|ftp|https)://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?$`
 )
 
 // IPv4 returns a *Regexp that matches IPv4 addresses.
@@ -35,4 +36,9 @@ func IPv4WithPort() *regexp.Regexp {
 // IPv6WithPort returns a *Regexp that matches IPv6 addresses with port.
 func IPv6WithPort() *regexp.Regexp {
 	return regexp.MustCompile(IPv6WithPortPattern)
+}
+
+// URL returns a *Regexp that matches URL addresses.
+func URL() *regexp.Regexp {
+	return regexp.MustCompile(URLPattern)
 }
