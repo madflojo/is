@@ -129,7 +129,7 @@ func ExampleIPv4WithPort() {
 	if IPv4WithPort().MatchString("10.0.0.1:9000") {
 		fmt.Println("Valid IPv4 with Port")
 	}
-  // Output: Valid IPv4 with Port
+	// Output: Valid IPv4 with Port
 }
 
 func TestIPv6WithPort(t *testing.T) {
