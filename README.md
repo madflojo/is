@@ -16,11 +16,14 @@ func main() {
 }
 ```
 
-Regular expressions are hard, this package is here to make them easier.
+Regular expressions are hard, and often there is no single regular expression that can validate all edge cases. The 
+goal of this project is to provide a collection that fits most cases. Contributions and improvements to the regular 
+expressions are always welcome.
 
 ## Contributing
 
-If you would like to contribute, please fork the repo and send in a pull request. All contributions are welcome and appreciated.
+If you would like to contribute, please fork the repo and send in a pull request. All contributions are welcome and 
+appreciated.
 
 ## License
 
