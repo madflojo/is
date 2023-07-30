@@ -12,6 +12,12 @@ Package `is` provides a curated collection of common regular expressions for Go.
 validating common patterns, such as IP addresses, URLs, email addresses, and more, using easy-to-use regular expressions.
 
 ```go
+package main
+
+import (
+  "github.com/madflojo/is"
+)
+
 func main() {
   // Validate an IPv4 address
   if is.IPv4().MatchString("10.0.0.1") {
