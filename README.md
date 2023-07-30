@@ -1,6 +1,6 @@
 # is
 
-![Actions Status](https://github.com/madflojo/is/actions/workflows/tests.yaml/badge.svg?branch=main)
+![Actions Status](https://github.com/madflojo/is/actions/workflows/tests.yml/badge.svg?branch=main)
 [![codecov](https://codecov.io/gh/madflojo/is/branch/main/graph/badge.svg?token=H9C9B6I0AS)](https://codecov.io/gh/madflojo/is)
 [![Go Report Card](https://goreportcard.com/badge/github.com/madflojo/is)](https://goreportcard.com/report/github.com/madflojo/is)
 [![Go Reference](https://pkg.go.dev/badge/github.com/madflojo/is.svg)](https://pkg.go.dev/github.com/madflojo/is)
