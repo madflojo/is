@@ -16,15 +16,12 @@ func TestIsIPv4(t *testing.T) {
 		{"Invalid IPv4 - Trailing Zeros", []string{"192.168.0.0000"}, false},
 	}
 
-	// Create regexp
-	isIPv4 := IPv4()
-
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
 			for _, input := range tc.inputs {
-				if isIPv4.MatchString(input) && !tc.matches {
+				if IPv4().MatchString(input) && !tc.matches {
 					t.Errorf("%s should not match", input)
-				} else if !isIPv4.MatchString(input) && tc.matches {
+				} else if !IPv4().MatchString(input) && tc.matches {
 					t.Errorf("%s should match", input)
 				}
 			}
@@ -49,15 +46,12 @@ func TestIsIPv6(t *testing.T) {
 		{"Not even an IP address", []string{"not an IP address"}, false},
 	}
 
-	// Create regexp
-	isIPv6 := IPv6()
-
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
 			for _, input := range tc.inputs {
-				if isIPv6.MatchString(input) && !tc.matches {
+				if IPv6().MatchString(input) && !tc.matches {
 					t.Errorf("%s should not match", input)
-				} else if !isIPv6.MatchString(input) && tc.matches {
+				} else if !IPv6().MatchString(input) && tc.matches {
 					t.Errorf("%s should match", input)
 				}
 			}
@@ -74,15 +68,12 @@ func TestMAC(t *testing.T) {
 		{"MAC Address with Extra Spaces", []string{"00:1A :2B:3C:4D:5E", " 11:22:33:AA:BB:CC", "aa:bb:cc:dd:ee :ff"}, false},
 	}
 
-	// Create regexp
-	isMAC := MAC()
-
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
 			for _, input := range tc.inputs {
-				if isMAC.MatchString(input) && !tc.matches {
+				if MAC().MatchString(input) && !tc.matches {
 					t.Errorf("%s should not match", input)
-				} else if !isMAC.MatchString(input) && tc.matches {
+				} else if !MAC().MatchString(input) && tc.matches {
 					t.Errorf("%s should match", input)
 				}
 			}
@@ -99,15 +90,12 @@ func TestIPv4WithPort(t *testing.T) {
 		{"IPv4 with Port - IPv6-Style Enclosed Address", []string{"[192.168.0.1]:8080", "[10.0.0.1]:12345", "[0.0.0.0]:80"}, false},
 	}
 
-	// Create regexp
-	isIPv4WithPort := IPv4WithPort()
-
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
 			for _, input := range tc.inputs {
-				if isIPv4WithPort.MatchString(input) && !tc.matches {
+				if IPv4WithPort().MatchString(input) && !tc.matches {
 					t.Errorf("%s should not match", input)
-				} else if !isIPv4WithPort.MatchString(input) && tc.matches {
+				} else if !IPv4WithPort().MatchString(input) && tc.matches {
 					t.Errorf("%s should match", input)
 				}
 			}
@@ -124,15 +112,12 @@ func TestIPv6WithPort(t *testing.T) {
 		{"IPv6 with Port - IPv4-Style Address", []string{"192.168.0.1:8080", "10.0.0.1:12345", "0.0.0.0:80"}, false},
 	}
 
-	// Create regexp
-	isIPv6WithPort := IPv6WithPort()
-
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
 			for _, input := range tc.inputs {
-				if isIPv6WithPort.MatchString(input) && !tc.matches {
+				if IPv6WithPort().MatchString(input) && !tc.matches {
 					t.Errorf("%s should not match", input)
-				} else if !isIPv6WithPort.MatchString(input) && tc.matches {
+				} else if !IPv6WithPort().MatchString(input) && tc.matches {
 					t.Errorf("%s should match", input)
 				}
 			}
