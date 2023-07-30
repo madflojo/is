@@ -1,6 +1,7 @@
 package is
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -33,6 +34,13 @@ func TestPhoneNumberNorthAmerica(t *testing.T) {
 	}
 }
 
+func ExamplePhoneNumberNorthAmerica() {
+	if PhoneNumberNorthAmerica().MatchString("1234567890") {
+		fmt.Println("Valid North American Phone Number")
+	}
+	// Output: Valid North American Phone Number
+}
+
 func TestPhoneNumberInternational(t *testing.T) {
 	tt := []TestCases{
 		{"Valid International Phone Numbers", []string{
@@ -62,6 +70,13 @@ func TestPhoneNumberInternational(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExamplePhoneNumberInternational() {
+	if PhoneNumberInternational().MatchString("+441234567890") {
+		fmt.Println("Valid International Phone Number")
+	}
+	// Output: Valid International Phone Number
 }
 
 func TestEmail(t *testing.T) {
@@ -100,4 +115,11 @@ func TestEmail(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleEmail() {
+	if Email().MatchString("example@example.com") {
+		fmt.Println("Valid Email")
+	}
+	// Output: Valid Email
 }

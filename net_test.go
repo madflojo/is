@@ -1,6 +1,7 @@
 package is
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -27,6 +28,13 @@ func TestIPv4(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleIPv4() {
+	if IPv4().MatchString("10.0.0.1") {
+		fmt.Println("Valid IPv4")
+	}
+	// Output: Valid IPv4
 }
 
 func TestIPv6(t *testing.T) {
@@ -59,6 +67,13 @@ func TestIPv6(t *testing.T) {
 	}
 }
 
+func ExampleIPv6() {
+	if IPv6().MatchString("::1") {
+		fmt.Println("Valid IPv6")
+	}
+	// Output: Valid IPv6
+}
+
 func TestMAC(t *testing.T) {
 	tt := []TestCases{
 		{"Valid MAC Address", []string{"00:1A:2B:3C:4D:5E", "11:22:33:AA:BB:CC", "aa:bb:cc:dd:ee:ff"}, true},
@@ -79,6 +94,13 @@ func TestMAC(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleMAC() {
+	if MAC().MatchString("00:1A:2B:3C:4D:5E") {
+		fmt.Println("Valid MAC Address")
+	}
+	// Output: Valid MAC Address
 }
 
 func TestIPv4WithPort(t *testing.T) {
@@ -103,6 +125,12 @@ func TestIPv4WithPort(t *testing.T) {
 	}
 }
 
+func ExampleIPv4WithPort() {
+	if IPv4WithPort().MatchString("10.0.0.1:9000") {
+		fmt.Println("Valid IPv4 with Port")
+	}
+}
+
 func TestIPv6WithPort(t *testing.T) {
 	tt := []TestCases{
 		{"Valid IPv6 with Port", []string{"[2001:db8::1]:8080", "[::1]:12345", "[2001:0db8:85a3::8a2e:0370:7334]:80"}, true},
@@ -123,6 +151,13 @@ func TestIPv6WithPort(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleIPv6WithPort() {
+	if IPv6WithPort().MatchString("[::1]:8080") {
+		fmt.Println("Valid IPv6 with Port")
+	}
+	// Output: Valid IPv6 with Port
 }
 
 func TestURL(t *testing.T) {
@@ -155,4 +190,11 @@ func TestURL(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleURL() {
+	if URL().MatchString("https://www.example.com") {
+		fmt.Println("Valid URL")
+	}
+	// Output: Valid URL
 }
