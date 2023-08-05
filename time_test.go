@@ -69,12 +69,12 @@ func TestISO8601Time(t *testing.T) {
 			"12:34:56",
 			"00:00:00",
 			"23:59:59",
+			"12:34:56.789",
 		}, true},
 		{"Invalid Time Formats", []string{
 			"24:00:00",       // Invalid hour (should be 00-23).
 			"00:60:00",       // Invalid minute (should be 00-59).
 			"12:34:60",       // Invalid second (should be 00-59).
-			"12:34:56.789",   // Fractional seconds not allowed.
 			"12:34:56Z",      // Contains UTC indicator.
 			"12:34:56+02:00", // Contains UTC offset.
 		}, false},
