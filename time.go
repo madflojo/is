@@ -11,16 +11,16 @@ const (
 )
 
 // ISO8601DateAndTime returns a *regexp.Regexp that matches time formats in ISO 8601 format.
-func ISO8601DateAndTime() *regexp.Regexp {
+func ISO8601DateAndTime() *regexp.Regexp { // nolint: revive // false positive on stutter
 	return regexp.MustCompile(ISO8601DateAndTimePattern)
 }
 
 // ISO8601Date returns a *regexp.Regexp that matches date formats in ISO 8601 format.
-func ISO8601Date() *regexp.Regexp {
+func ISO8601Date() *regexp.Regexp { // nolint: revive // false positive on stutter
 	return regexp.MustCompile(ISO8601DatePattern)
 }
 
 // ISO8601Time returns a *regexp.Regexp that matches time formats in ISO 8601 format.
-func ISO8601Time() *regexp.Regexp {
+func ISO8601Time() *regexp.Regexp { // no lint: revive // false positive on stutter
 	return regexp.MustCompile(ISO8601TimePattern)
 }
