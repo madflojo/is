@@ -21,6 +21,6 @@ func ISO8601Date() *regexp.Regexp { // nolint: revive // false positive on stutt
 }
 
 // ISO8601Time returns a *regexp.Regexp that matches time formats in ISO 8601 format.
-func ISO8601Time() *regexp.Regexp { // no lint: revive // false positive on stutter
+func ISO8601Time() *regexp.Regexp { // nolint: revive // false positive on stutter
 	return regexp.MustCompile(ISO8601TimePattern)
 }
