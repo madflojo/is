@@ -3,6 +3,13 @@ name: Lint Commit Messages
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
+  workflow_dispatch:
+    inputs:
+      base_ref:
+        description: Integration branch for the selected release or PR head
+        type: string
+        required: true
+        default: main
 
 permissions:
   contents: read
@@ -13,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -27,9 +34,18 @@ jobs:
       - name: Lint the full pull request commit range
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BASE_REF: ${{ inputs.base_ref }}
+          GH_TOKEN: ${{ github.token }}
           NODE_PATH: ${{ runner.temp }}/commitlint/node_modules
         run: |
+          if [ -z "$BASE_SHA" ]; then
+            git check-ref-format "refs/heads/$BASE_REF"
+            BASE_SHA=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$BASE_REF" --jq '.object.sha')
+            git -c credential.helper= -c 'credential.helper=!gh auth git-credential' \
+              fetch --no-tags origin "$BASE_SHA"
+          fi
+          unset GH_TOKEN
           git cat-file -e "$BASE_SHA^{commit}"
           git cat-file -e "$HEAD_SHA^{commit}"
           MERGE_BASE=$(git merge-base "$BASE_SHA" "$HEAD_SHA")
