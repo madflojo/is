@@ -2,6 +2,7 @@ package is
 
 import "regexp"
 
+// Contact validation patterns are shared with the compiled-regexp helpers below.
 const (
 	EmailPattern                    = `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
 	PhoneNumberNorthAmericaPattern  = `^([+]?\d{1,2}[-\.\s]?)?\(?(\d{3})\)?[-\.\s]?(\d{3})[-\.\s]?(\d{4})$`
